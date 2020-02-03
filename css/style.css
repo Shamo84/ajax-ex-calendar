@@ -3,3 +3,12 @@
   padding: 0;
   margin: 0;
 }
+#template {
+  display: none;
+}
+ul {
+  list-style: circle;
+}
+.red {
+  color: red;
+}
