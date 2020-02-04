@@ -1,7 +1,6 @@
 $(document).ready(function() {
   // scelto il mese iniziale che è sempre gennaio e lo stampo nel titolo
   var meseCorrente = moment("1-2018", "M-YYYY", true);
-  $("#meseCorrente").text(meseCorrente.format("MMMM YYYY"));
   // chiamo le due funzioni per stampare i giorni di gennaio e controllare le feste tramite ajax
   printCurrentMonth(meseCorrente);
   printFestivities(meseCorrente);
@@ -10,7 +9,6 @@ $(document).ready(function() {
   $(document).on("click", function(event) {
     if ($(event.target).hasClass("prev")) {
       meseCorrente = meseCorrente.subtract(1, "months");
-      $("#meseCorrente").text(meseCorrente.format("MMMM YYYY"));
       $("#calendar").html("");
       $(".next").removeClass("hidden");
       if (meseCorrente.month() == 0) {
@@ -20,7 +18,6 @@ $(document).ready(function() {
       printFestivities(meseCorrente)
     } else if ($(event.target).hasClass("next")) {
       meseCorrente = meseCorrente.add(1, "months");
-      $("#meseCorrente").text(meseCorrente.format("MMMM YYYY"));
       $("#calendar").html("");
       $(".prev").removeClass("hidden");
       if (meseCorrente.month() == 11) {
@@ -34,6 +31,7 @@ $(document).ready(function() {
 
 // funzioni
 function printCurrentMonth(month) {
+  $("#titolo").text(month.format("MMMM YYYY"));
   var giorniNelMese = month.daysInMonth();
   for (var i = 1; i <= giorniNelMese; i++) {
     var source = $("#template").html();
