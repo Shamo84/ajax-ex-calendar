@@ -1,16 +1,22 @@
 $(document).ready(function() {
+
   for (var i = 1; i <= 31; i++) {
-    var source = document.getElementById("template").innerHTML;
+    var source = $("#template").html();
     var template = Handlebars.compile(source);
-    var context = {date: moment(i + '/01/2018', 'D/MM/YYYY', true).format('D MMMM')};
+    var context = {date: moment(i + '/12/2018', 'D/M/YYYY', true).format('D MMMM')};
     var html = template(context);
     if (context.date != "Invalid date") {
       $("#calendar").append(html);
     }
   }
+  var meseCorrente = moment(
+    {
+      month: 0
+    }
+  );
   $.ajax(
   {
-    url: "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=0",
+    url: "https://flynn.boolean.careers/exercises/api/holidays?year=2018&month=11",
     method: "GET",
     success: function (data, stato) {
       $("#risultati").html(data);
@@ -23,9 +29,6 @@ $(document).ready(function() {
           }
         }
       }
-      console.log(data.response[0].date);
-      console.log(moment(data.response[0].date, 'YYYY-MM-DD', true).format('D MMMM'));
-      console.log(data.response[1].date);
     },
     error: function (richiesta, stato, errori) {
       alert("E' avvenuto un errore. " + errore);

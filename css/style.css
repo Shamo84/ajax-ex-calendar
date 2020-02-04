@@ -12,3 +12,6 @@ ul {
 .red {
   color: red;
 }
+.hidden {
+  visibility: hidden;
+}
